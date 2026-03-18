@@ -1,0 +1,52 @@
+{
+  "name": "@sf-protocol/react",
+  "version": "0.1.0",
+  "description": "React hooks and components for SprintFund governance protocol",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "test:ui": "vitest --ui",
+    "lint": "eslint src --ext .ts,.tsx",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist coverage"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "@sf-protocol/core": "^0.1.0"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.28.0",
+    "@stacks/connect": "^9.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/react": "^18.2.42",
+    "@testing-library/react": "^14.1.2",
+    "@testing-library/react-hooks": "^8.0.1",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "@vitest/coverage-v8": "^1.0.0",
+    "eslint": "^8.56.0",
+    "react": "^18.2.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.0.0",
+    "@sf-protocol/core": "^0.1.0"
+  }
+}
