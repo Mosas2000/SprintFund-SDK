@@ -8,12 +8,15 @@ import {
 import { BigIntString, Principal, toBigIntString } from '../types/index.js';
 import { globalCache } from '../utils/cache.js';
 import { NetworkType } from '../types/index.js';
+import { isProposal } from '../types/contract.js';
+import { throwNetworkError } from '../errors/network.js';
 
 /**
  * Client for proposal-related contract operations
  */
 export class ProposalClient extends BaseClient {
   private readonly cacheKeyPrefix = 'proposals:';
+  private readonly cacheTtl = 5 * 60 * 1000; // 5 minutes
 
   constructor(networkType: NetworkType = 'mainnet') {
     super(networkType);
@@ -29,11 +32,17 @@ export class ProposalClient extends BaseClient {
 
     try {
       const proposal = await this.fetchProposalFromChain(proposalId);
-      if (proposal) {
-        globalCache.set(cacheKey, proposal);
+      if (proposal && isProposal(proposal)) {
+        globalCache.set(cacheKey, proposal, this.cacheTtl);
       }
       return proposal;
-    } catch {
+    } catch (error) {
+      if (error instanceof Error) {
+        throwNetworkError(`Failed to fetch proposal ${proposalId}: ${error.message}`, {
+          proposalId,
+          network: this.getNetworkType(),
+        });
+      }
       return null;
     }
   }
@@ -48,9 +57,21 @@ export class ProposalClient extends BaseClient {
 
     try {
       const proposals = await this.fetchProposalsFromChain(options);
-      globalCache.set(cacheKey, proposals);
+      if (Array.isArray(proposals) && proposals.every(isProposal)) {
+        globalCache.set(cacheKey, proposals, this.cacheTtl);
+      }
       return proposals;
-    } catch {
+    } catch (error) {
+      if (error instanceof Error) {
+        throwNetworkError(
+          `Failed to list proposals: ${error.message}`,
+          {
+            limit: options.limit,
+            offset: options.offset,
+            network: this.getNetworkType(),
+          }
+        );
+      }
       return [];
     }
   }
@@ -67,16 +88,43 @@ export class ProposalClient extends BaseClient {
   }
 
   /**
+   * Get total proposal count
+   */
+  async getProposalCount(): Promise<BigIntString> {
+    const cacheKey = `${this.cacheKeyPrefix}total-count`;
+    const cached = globalCache.get<BigIntString>(cacheKey);
+    if (cached) return cached;
+
+    try {
+      const count = await this.fetchProposalCount();
+      globalCache.set(cacheKey, count, this.cacheTtl);
+      return count;
+    } catch (error) {
+      if (error instanceof Error) {
+        throwNetworkError(`Failed to get proposal count: ${error.message}`, {
+          network: this.getNetworkType(),
+        });
+      }
+      return toBigIntString(0);
+    }
+  }
+
+  /**
    * Invalidate proposal cache
    */
-  invalidateCache(): void {
-    globalCache.invalidatePattern(new RegExp(`^${this.cacheKeyPrefix}`));
+  invalidateCache(proposalId?: BigIntString): void {
+    if (proposalId) {
+      globalCache.delete(`${this.cacheKeyPrefix}${proposalId}`);
+    } else {
+      globalCache.invalidatePattern(new RegExp(`^${this.cacheKeyPrefix}`));
+    }
   }
 
   private async fetchProposalFromChain(
-    proposalId: BigIntString
+    _proposalId: BigIntString
   ): Promise<Proposal | null> {
     // Placeholder for actual chain interaction
+    // Would call Stacks API or use library like @stacks/transactions
     return null;
   }
 
@@ -85,5 +133,10 @@ export class ProposalClient extends BaseClient {
   ): Promise<Proposal[]> {
     // Placeholder for actual chain interaction
     return [];
+  }
+
+  private async fetchProposalCount(): Promise<BigIntString> {
+    // Placeholder for actual chain interaction
+    return toBigIntString(0);
   }
 }
