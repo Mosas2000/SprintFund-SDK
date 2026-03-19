@@ -17,4 +17,9 @@ export * from './hooks/useCreateProposal.js';
 export * from './hooks/useVote.js';
 export * from './hooks/useExecuteProposal.js';
 
+export * from './hooks/useA11yFocus.js';
+export * from './hooks/useAriaLive.js';
+
+export * from './a11y/index.js';
+
 export * from './query-keys/index.js';

@@ -1,4 +1,4 @@
-import React, { ReactNode, useMemo } from 'react';
+import { ReactNode, useMemo } from 'react';
 import { SprintFundClient } from '@sf-protocol/core';
 import { SprintFundContext, SprintFundContextType } from '../context/SprintFundContext.js';
 

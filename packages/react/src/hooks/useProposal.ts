@@ -10,7 +10,7 @@ export function useProposal(proposalId: BigIntString | undefined) {
   const { client } = useSprintFundContext();
 
   return useQuery({
-    queryKey: proposalKeys.detail(proposalId || ''),
+    queryKey: proposalKeys.detail(proposalId ?? ''),
     queryFn: async () => {
       if (!proposalId) return null;
       return client!.proposals.getProposal(proposalId);
