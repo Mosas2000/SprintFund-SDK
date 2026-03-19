@@ -19,7 +19,9 @@ export * from './hooks/useExecuteProposal.js';
 
 export * from './hooks/useA11yFocus.js';
 export * from './hooks/useAriaLive.js';
+export * from './hooks/useCache.js';
 
 export * from './a11y/index.js';
+export * from './cache/index.js';
 
 export * from './query-keys/index.js';
