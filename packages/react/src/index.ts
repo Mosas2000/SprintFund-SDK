@@ -21,9 +21,11 @@ export * from './hooks/useA11yFocus.js';
 export * from './hooks/useAriaLive.js';
 export * from './hooks/useCache.js';
 export * from './hooks/useRealtime.js';
+export * from './hooks/useWallet.js';
 
 export * from './a11y/index.js';
 export * from './cache/index.js';
 export * from './realtime/index.js';
+export * from './wallet/index.js';
 
 export * from './query-keys/index.js';
