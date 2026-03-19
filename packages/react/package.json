@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^5.28.0",
-    "@stacks/connect": "^9.6.0"
+    "@stacks/connect": "^7.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.10.0",
