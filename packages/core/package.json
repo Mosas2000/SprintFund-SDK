@@ -1,6 +1,6 @@
 {
   "name": "@sf-protocol/core",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Core contract client for SprintFund governance protocol",
   "license": "MIT",
   "type": "module",
