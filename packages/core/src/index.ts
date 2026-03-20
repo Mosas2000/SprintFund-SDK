@@ -13,6 +13,7 @@ export * from './types/errors.js';
 export * from './constants/contract.js';
 
 export * from './config/networks.js';
+export * from './config/manager.js';
 
 export * from './client/base.js';
 export * from './client/proposals.js';
@@ -30,5 +31,13 @@ export * from './errors/base.js';
 export * from './errors/contract.js';
 export * from './errors/network.js';
 export * from './errors/validation.js';
+export * from './errors/recovery.js';
+
+export * from './observability/logger.js';
+
+export * from './serialization/codec.js';
+
+export * from './performance/profiler.js';
 
 export * from './client/sprintfund.js';
+
