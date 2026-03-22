@@ -1,0 +1,23 @@
+{
+  "name": "@sf-protocol/testing",
+  "version": "0.2.0",
+  "description": "Testing utilities and mocks for SF Protocol",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest"
+  },
+  "keywords": ["sf-protocol", "testing"],
+  "author": "SF Protocol",
+  "license": "MIT",
+  "dependencies": {
+    "@sf-protocol/core": "^0.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.0.0"
+  }
+}
