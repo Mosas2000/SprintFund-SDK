@@ -41,3 +41,8 @@ export * from './performance/profiler.js';
 
 export * from './client/sprintfund.js';
 
+
+export * from './events/bus.js';
+export * from './events/plugins.js';
+
+export * from './middleware/chain.js';
