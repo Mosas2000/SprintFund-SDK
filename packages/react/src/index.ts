@@ -31,3 +31,8 @@ export * from './wallet/index.js';
 export * from './templates/index.js';
 
 export * from './query-keys/index.js';
+
+export * from './hooks/useContract.js';
+export * from './hooks/useStore.js';
+export * from './hooks/useBatch.js';
+export * from './hooks/useIntegration.js';
