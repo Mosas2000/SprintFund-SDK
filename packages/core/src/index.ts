@@ -46,3 +46,7 @@ export * from './events/bus.js';
 export * from './events/plugins.js';
 
 export * from './middleware/chain.js';
+
+export * from './state/store.js';
+export * from './batch/processor.js';
+export * from './query/builder.js';
