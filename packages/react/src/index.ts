@@ -36,3 +36,5 @@ export * from './hooks/useContract.js';
 export * from './hooks/useStore.js';
 export * from './hooks/useBatch.js';
 export * from './hooks/useIntegration.js';
+
+export * from './components/index.js';
