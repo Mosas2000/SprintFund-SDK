@@ -50,3 +50,7 @@ export * from './middleware/chain.js';
 export * from './state/store.js';
 export * from './batch/processor.js';
 export * from './query/builder.js';
+
+export * from './utils/format.js';
+export * from './utils/async.js';
+export * from './utils/validation.js';
