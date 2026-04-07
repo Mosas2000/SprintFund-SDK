@@ -1,6 +1,6 @@
 {
   "name": "@sf-protocol/testing",
-  "version": "0.2.0",
+  "version": "0.5.0",
   "description": "Testing utilities and mocks for SF Protocol",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
